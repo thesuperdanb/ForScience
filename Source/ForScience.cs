@@ -12,7 +12,7 @@ namespace ForScience
     {
         //GUI
         private GUIStyle windowStyle, labelStyle, toggleStyle;
-        private Rect windowPosition = new Rect(0f, 200f, 0f, 0f);
+        private Rect windowPosition = new Rect(0f, -200f, 0f, 0f);
         private bool initStyle = false;
 
         // states
@@ -153,16 +153,12 @@ namespace ForScience
         private void MainWindow(int windowID)
         {
             GUILayout.BeginHorizontal();
-            if (GUILayout.Toggle(autoTransfer, "Automatic data collection", toggleStyle))
+            if (!autoTransfer)
             {
-                if (!autoTransfer)
-                {
-                    ManageScience();
-                    RunScience();
-                }
-                autoTransfer = true;
+                ManageScience();
+                RunScience();
             }
-            else autoTransfer = false;
+            autoTransfer = true;
             GUILayout.EndHorizontal();
 
             GUI.DragWindow();
